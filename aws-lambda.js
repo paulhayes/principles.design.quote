@@ -36,7 +36,10 @@ const handlers = {
         principleDesign.getQuote().then(function(quote){
             // Create speech output
             const speechOutput = quote;
-            this.emit(':tellWithCard', speechOutput, this.t('SKILL_NAME'), randomFact);
+            this.response.cardRenderer(this.t('SKILL_NAME'), quote);
+            this.response.speak(speechOutput);
+            this.emit(':responseReady');
+            //this.emit(':tellWithCard', speechOutput, this.t('SKILL_NAME'), quote);
         });
 
     },
